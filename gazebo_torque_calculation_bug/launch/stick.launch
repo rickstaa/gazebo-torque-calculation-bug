@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<launch>
+  <!--Bug test parameters-->
+  <arg name="rotate_joint2" default="False" doc="Whether you want to use the z-axis of joint 2 as the axis of rotation."/>
+  <!--Gazebo Parameters-->
+  <arg name="gazebo" default="true" doc="Should the gazebo simulation be launched? Use false in case if you want to include this file and launch gazebo yourself" />
+  <arg name="paused" default="true" doc="Should the simulation directly be stopped at 0s?" />
+  <arg name="rviz" default="false" doc="Should RVIz be launched?" />
+  <arg name="world" default="worlds/stick.world" doc="Filename to a SDF World for gazebo to use" />
+
+  <!--Stick Configuration-->
+  <arg name="x" default="0" doc="How far forward to place the base of the stick in [m]?" />
+  <arg name="y" default="0" doc="How far leftwards to place the base of the stick in [m]?" />
+  <arg name="z" default="0" doc="How far upwards to place the base of the stick in [m]?" />
+  <arg name="roll" default="0" doc="How much to rotate the base of the stick around its X-axis in [rad]?" />
+  <arg name="pitch" default="0" doc="How much to rotate the base of the stick around its Y-axis in [rad]?" />
+  <arg name="yaw" default="0" doc="How much to rotate the base of the stick around its Z-axis in [rad]?" />
+  <arg name="initial_joint_positions" doc="Initial joint configuration of the Stick. Specify as a list of name/value pairs in form of '-J [name-of-joint] [value-in-rad]'. Default is a 90 degree bend in the elbow" default="
+              -J stick_joint1 0.0
+              -J stick_joint2 0.0"/>
+
+  <!--Launch Gazebo-->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch" if="$(arg gazebo)">
+    <arg name="world_name" value="$(arg world)"/>
+    <!-- Always start in paused mode, and only unpause when spawning the model -->
+    <arg name="paused" value="true"/>
+  </include>
+
+  <!--Load stick model as parameter-->
+  <param name="robot_description" command="xacro $(find gazebo_torque_calculation_bug)/stick_description/stick.urdf.xacro xyz:='$(arg x) $(arg y) $(arg z)' rpy:='$(arg roll) $(arg pitch) $(arg yaw)' rotated:='$(arg rotate_joint2)'"/>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find gazebo_torque_calculation_bug)/config/gazebo_controllers.yaml" command="load"/>
+
+  <!-- load the default controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" output="screen" args="
+    joint_state_controller
+    effort_joint_trajectory_controller"/>
+
+  <!--Add stick to Gazebo-->
+  <arg name="unpause" value="$(eval '' if arg('paused') else '-unpause')" />
+  <node name="stick_model_spawner" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model stick $(arg unpause)
+              $(arg initial_joint_positions)
+              "/>
+
+  <!--Load robot and joint state publishers-->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <!--Load rivz-->
+  <node pkg="rviz" type="rviz" output="screen" name="rviz" args="-d $(find gazebo_torque_calculation_bug)/launch/stick.rviz"/>
+</launch>

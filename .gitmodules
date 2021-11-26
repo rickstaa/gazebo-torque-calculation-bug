@@ -1,0 +1,3 @@
+[submodule "gazebo_ros_pkgs"]
+	path = gazebo_ros_pkgs
+	url = git@github.com:rickstaa/gazebo_ros_pkgs.git
