@@ -12,7 +12,7 @@
     <!--Camera settings-->
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>0.155086 0.168737 0.221265 0 0.567643 -2.19181</pose>
+        <pose>0.646183 -0.123158 0.324322 0 0.323642 2.8042</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
