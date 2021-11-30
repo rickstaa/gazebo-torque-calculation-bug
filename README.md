@@ -20,22 +20,54 @@ You can ofcourse also use `catkin_make`. The `DCMAKE_EXPORT_COMPILE_COMMANDS` is
 
 ## Use
 
-Run the following command to see the working example
+There are two modes in which you can see the bug the first mode is when `load_single_stick` is `true`. In this you can see the working example using the following command:
+
+```bash
+roslaunch gazebo_torque_calculation_bug stick.launch load_single_stick:=true
+```
+
+You can then step through the simulation to see the torques in the terminal and the plot. After you inspected this version you can
+run the following command to see the example in which the `GetForceTorque()` function calculates the wrong torque:
+
+```bash
+roslaunch gazebo_torque_calculation_bug stick.launch load_single_stick:=true rotate_joint1:=true initial_joint_positions:='-J stick_joint1 1.57079632679'
+```
+
+Alternatively, you can see both in action when `load_single_stick` is `false`:
 
 ```bash
 roslaunch gazebo_torque_calculation_bug stick.launch
 ```
 
-You can then step through the simulation to see the torque printed. After you inspected this version you can
-run the following command to see the example in which the `GetForceTorque()` function calculates the wrong torque:
+In this:
 
-```bash
-roslaunch gazebo_torque_calculation_bug stick.launch rotate_aor:=true
-```
+- `stick`: Is the normal working example.
+- `stick2`: Same as above but now the joint is rotated by 180 degrees.
+- `stick3`: The fliped (WRONG) example.
+- `stick4`: Same as above but now the joint is rotated by 180 degrees.
+
+In both options you can control the stick joints using the `rqt_joint_trajectory_controller` windows.
 
 ## Parameters
 
+The script contains the following ROS parameters:
+
 - `log_bug_info`: Enable/disable bug console logs.
+- `sparse_bug_info`: Only show debug info for first joint.
+
+## Topics
+
+The bug info that is printed to the console is also published under the `/<STICK_NAME>/gazebo_bug` topic. The error is the difference between the calculated effort and gravity torque. The distinction between `error` and `error2` lies in the fact that the `error` is calculated as follows:
+
+```cpp
+auto gazebo_effort = Eigen::Vector3d(
+      gazebo_torque.X(),
+      gazebo_torque.Y(),
+      gazebo_torque.Z()
+    ).dot(urdf_axis);
+```
+
+where error2 uses the effort that comes from the gazebos [GetForce](https://osrf-distributions.s3.amazonaws.com/gazebo/api/dev/classgazebo_1_1physics_1_1Joint.html#aebc39094623208f497a38b91cc51f7fe) method.
 
 ## Bug report
 
