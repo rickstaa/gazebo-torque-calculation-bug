@@ -33,6 +33,10 @@ run the following command to see the example in which the `GetForceTorque()` fun
 roslaunch gazebo_torque_calculation_bug stick.launch rotate_aor:=true
 ```
 
+## Parameters
+
+- `log_bug_info`: Enable/disable bug console logs.
+
 ## Bug report
 
 The full bug report can be found [here](https://github.com/frankaemika/franka_ros/issues/160#issuecomment-961780423).
