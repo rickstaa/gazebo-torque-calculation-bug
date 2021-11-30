@@ -12,8 +12,8 @@
   <arg name="pitch" default="0" doc="How much to rotate the base of the stick around its Y-axis in [rad]?" />
   <arg name="yaw" default="0" doc="How much to rotate the base of the stick around its Z-axis in [rad]?" />
   <arg name="initial_joint_positions" doc="Initial joint configuration of the Stick. Specify as a list of name/value pairs in form of '-J [name-of-joint] [value-in-rad]'. Default is a 90 degree bend in the elbow" default="
-              -J stick_joint1 0.0
-              -J stick_joint2 0.0"/>
+              -J $(arg robot_name)_joint1 0.0
+              -J $(arg robot_name)_joint2 0.0"/>
 
   <!--Load stick model as parameter-->
   <param name="robot_description" command="xacro $(find gazebo_torque_calculation_bug)/stick_description/stick.urdf.xacro xyz:='$(arg x) $(arg y) $(arg z)' rpy:='$(arg roll) $(arg pitch) $(arg yaw)' rotated:='$(arg rotate_joint1)' robot_name:='$(arg robot_name)'"/>
@@ -28,9 +28,9 @@
 
   <!--Add stick to Gazebo-->
   <arg name="unpause" value="$(eval '' if arg('paused') else '-unpause')" />
-  <node name="$(arg robot_name)_model_spawner" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model $(arg robot_name) $(arg unpause)
+  <node name="model_spawner" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model $(arg robot_name) $(arg unpause)
               $(arg initial_joint_positions)"/>
 
   <!--Load robot and joint state publishers-->
-  <node name="$(arg robot_name)_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
 </launch>

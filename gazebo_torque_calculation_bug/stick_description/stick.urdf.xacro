@@ -78,7 +78,7 @@
   <xacro:if value="$(arg rotated)">    <!--With rotation-->
     <joint name="$(arg robot_name)_joint1" type="revolute">
       <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
-      <origin xyz="0 0 0.1" rpy="${pi/2} -${pi/2} 0" />
+      <origin xyz="0 0 0.1" rpy="${pi/2} 0 0"/>
       <parent link="$(arg robot_name)_link1"/>
       <child link="$(arg robot_name)_link2"/>
       <axis xyz="0 0 1"/>
@@ -89,7 +89,7 @@
   <xacro:unless value="$(arg rotated)">
     <joint name="$(arg robot_name)_joint1" type="revolute">
       <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
-      <origin xyz="0 0 0.1" rpy="${pi/2} -${pi/2} 0" />
+      <origin xyz="0 0 0.1" rpy="0 0 0"/>
       <parent link="$(arg robot_name)_link1"/>
       <child link="$(arg robot_name)_link2"/>
       <axis xyz="0 1 0"/>
