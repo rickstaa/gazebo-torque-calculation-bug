@@ -1,0 +1,21 @@
+<launch>
+  <!--Ignition Parameters-->
+  <arg name="paused" default="true" doc="Should the simulation directly be stopped at 0s?" />
+  <arg name="config" default="$(find gazebo_torque_calculation_bug)/resources/configs/stick_ignition.config" doc="Filename to a GUI config for gazebo to use" />
+  <arg name="rotated" default="false" doc="Show rotated configuration."/>
+
+  <!--Launch ignition gazebo-->
+  <arg name="unpause" value="$(eval '' if arg('paused') else '-r')" />
+  <group unless="$(arg rotated)">
+    <arg name="world" value="$(find gazebo_torque_calculation_bug)/resources/worlds/stick_ignition_world.sdf" doc="Filename to a SDF World for gazebo to use" />
+    <include file="$(find ros_ign_gazebo)/launch/ign_gazebo.launch">
+      <arg name="ign_args" value="$(arg world) $(arg unpause) --gui-config $(arg config)"/>
+    </include>
+  </group>
+  <group if="$(arg rotated)">
+    <arg name="world" value="$(find gazebo_torque_calculation_bug)/resources/worlds/stick_rotated_ignition_world.sdf" doc="Filename to a SDF World for gazebo to use" />
+    <include file="$(find ros_ign_gazebo)/launch/ign_gazebo.launch">
+      <arg name="ign_args" value="$(arg world) $(arg unpause) --gui-config $(arg config)"/>
+    </include>
+  </group>
+</launch>

@@ -1,0 +1,263 @@
+<sdf version='1.9'>
+  <world name='default'>
+    <!--Physics/scene settings-->
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>5.5645e-6 22.8758e-6 -42.3884e-6</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1.0</ambient>
+      <background>.7 .7 .7 1</background>
+      <shadows>true</shadows>
+    </scene>
+
+    <!--System Plugins-->
+    <plugin filename='ignition-gazebo-physics-system' name='ignition::gazebo::systems::Physics'>
+    </plugin>
+    <plugin filename='ignition-gazebo-user-commands-system' name='ignition::gazebo::systems::UserCommands'>
+    </plugin>
+    <plugin filename='ignition-gazebo-scene-broadcaster-system' name='ignition::gazebo::systems::SceneBroadcaster'>
+    </plugin>
+    <plugin filename='ignition-gazebo-sensors-system' name='ignition::gazebo::systems::Sensors'>
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin filename='ignition-gazebo-contact-system' name='ignition::gazebo::systems::Contact'>
+    </plugin>
+    <plugin filename="ignition-gazebo-forcetorque-system" name="ignition::gazebo::systems::ForceTorque">
+    </plugin>
+
+    <!--Add world models-->
+    <light type='directional' name='sun'>
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!--Add stick model-->
+    <model name='stick'>
+      <joint name='world_fixed' type='fixed'>
+        <parent>world</parent>
+        <child>stick_link1</child>
+      </joint>
+
+
+      <!--Create stick example links-->
+      <link name='stick_link1'>
+        <inertial>
+          <pose>0 0 0.05 0 0 0</pose>
+          <mass>0.510204</mass>
+          <inertia>
+            <ixx>0.1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.1</iyy>
+            <iyz>0</iyz>
+            <izz>0.1</izz>
+          </inertia>
+        </inertial>
+        <collision name='stick_link1_collision'>
+          <pose>0 0 0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.02 0.02 0.08</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='stick_link1_visual'>
+          <pose>0 0 0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.02 0.02 0.08</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      <link name='stick_link2'>
+        <pose relative_to='stick_joint1'/>
+        <inertial>
+          <pose>0 0 0.05 0 0 0</pose>
+          <mass>0.510204</mass>
+          <inertia>
+            <ixx>0.1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.1</iyy>
+            <iyz>0</iyz>
+            <izz>0.1</izz>
+          </inertia>
+        </inertial>
+        <collision name='stick_link2_collision'>
+          <pose>0 0 0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.02 0.02 0.08</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='stick_link2_visual'>
+          <pose>0 0 0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.02 0.02 0.08</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      <link name='stick_link3'>
+        <pose relative_to='stick_joint2'/>
+        <inertial>
+          <pose>0 0 0.05 0 0 0</pose>
+          <mass>0.510204</mass>
+          <inertia>
+            <ixx>0.1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.1</iyy>
+            <iyz>0</iyz>
+            <izz>0.1</izz>
+          </inertia>
+        </inertial>
+        <collision name='stick_link3_collision'>
+          <pose>0 0 0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.02 0.02 0.08</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='stick_link3_visual'>
+          <pose>0 0 0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.02 0.02 0.08</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+
+      <!--Create stick joints-->
+      <!--  Problem joint-->
+      <joint name='stick_joint1' type='revolute'>
+        <pose relative_to='stick_link1'>0 0 0.1 0 -1.5708 0</pose>
+        <parent>stick_link1</parent>
+        <child>stick_link2</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-2.9671</lower>
+            <upper>2.9671</upper>
+            <effort>87</effort>
+            <velocity>2.5</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.003</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+
+        <!--Joint torque sensor-->
+        <sensor name="force_torque_sensor" type="force_torque">
+          <always_on>true</always_on>
+          <update_rate>50</update_rate>
+          <visualize>true</visualize>
+          <topic>stick_joint1/force_torque</topic>
+          <force_torque>
+            <frame>sensor</frame>
+            <measure_direction>parent_to_child</measure_direction>
+          </force_torque>
+        </sensor>
+      </joint>
+      <!--Joint1 position controller-->
+      <plugin filename="ignition-gazebo-joint-position-controller-system" name="ignition::gazebo::systems::JointPositionController">
+        <joint_name>stick_joint1</joint_name>
+        <p_gain>600</p_gain>
+        <i_gain>1.5</i_gain>
+        <d_gain>25.0</d_gain>
+        <i_max>1</i_max>
+        <i_min>-1</i_min>
+        <cmd_max>1000</cmd_max>
+        <cmd_min>-1000</cmd_min>
+      </plugin>
+
+      <!--  Weight joint-->
+      <joint name='stick_joint2' type='revolute'>
+        <pose relative_to='stick_link2'>0 0 0.1 1.5708 0 0</pose>
+        <parent>stick_link2</parent>
+        <child>stick_link3</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-2.9671</lower>
+            <upper>2.9671</upper>
+            <effort>87</effort>
+            <velocity>2.5</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.003</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+
+        <!--Joint2 torque sensor-->
+        <sensor name="force_torque_sensor" type="force_torque">
+          <always_on>true</always_on>
+          <update_rate>50</update_rate>
+          <visualize>true</visualize>
+          <topic>stick_joint2/force_torque</topic>
+          <force_torque>
+            <frame>sensor</frame>
+            <measure_direction>parent_to_child</measure_direction>
+          </force_torque>
+        </sensor>
+      </joint>
+      <!--Joint2 position controller-->
+      <plugin filename="ignition-gazebo-joint-position-controller-system" name="ignition::gazebo::systems::JointPositionController">
+        <joint_name>stick_joint2</joint_name>
+        <p_gain>450</p_gain>
+        <i_gain>1.5</i_gain>
+        <d_gain>25.0</d_gain>
+        <i_max>1</i_max>
+        <i_min>-1</i_min>
+        <cmd_max>1000</cmd_max>
+        <cmd_min>-1000</cmd_min>
+      </plugin>
+    </model>
+  </world>
+</sdf>

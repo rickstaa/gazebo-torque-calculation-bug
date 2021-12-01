@@ -52,6 +52,8 @@ In both options you can control the stick joints using the `rqt_joint_trajectory
 
 The script contains the following ROS parameters:
 
+The script contains the following ROS parameters:
+
 - `log_bug_info`: Enable/disable bug console logs.
 - `sparse_bug_info`: Only show debug info for first joint.
 
@@ -68,6 +70,26 @@ auto gazebo_effort = Eigen::Vector3d(
 ```
 
 where error2 uses the effort that comes from the gazebos [GetForce](https://osrf-distributions.s3.amazonaws.com/gazebo/api/dev/classgazebo_1_1physics_1_1Joint.html#aebc39094623208f497a38b91cc51f7fe) method.
+
+## Ignition Gazebo example
+
+You can also check whether this bug is present in [ignition 6.0](https://ignitionrobotics.org/home). Use the following command to start the nominal case:
+
+```bash
+roslaunch gazebo_torque_calculation_bug stick_ignition.launch
+```
+
+To start the bugged case use:
+
+```bash
+roslaunch gazebo_torque_calculation_bug stick_ignition.launch rotated:=true
+```
+
+After you started the simulation you can check the joint force and torque by using the following command:
+
+```bash
+ign topic -e -n1 -t /stick_joint1/force_torque
+```
 
 ## Bug report
 
