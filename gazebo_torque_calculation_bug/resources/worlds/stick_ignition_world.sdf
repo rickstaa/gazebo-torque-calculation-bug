@@ -175,7 +175,7 @@
       <!--Create stick joints-->
       <!--  Problem joint-->
       <joint name='stick_joint1' type='revolute'>
-        <pose relative_to='stick_link1'>0 0 0.1 0 -1.5708 0</pose>
+        <pose relative_to='stick_link1'>0 0 0.1 0 -1.5707963267948966 0</pose>
         <parent>stick_link1</parent>
         <child>stick_link2</child>
         <axis>
@@ -218,7 +218,7 @@
 
       <!--  Weight joint-->
       <joint name='stick_joint2' type='revolute'>
-        <pose relative_to='stick_link2'>0 0 0.1 1.5708 0 0</pose>
+        <pose relative_to='stick_link2'>0 0 0.1 1.5707963267948966 0 0</pose>
         <parent>stick_link2</parent>
         <child>stick_link3</child>
         <axis>

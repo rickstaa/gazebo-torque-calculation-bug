@@ -91,6 +91,8 @@ After you started the simulation you can check the joint force and torque by usi
 ign topic -e -n1 -t /stick_joint1/force_torque
 ```
 
+In both options you can control the stick joints using the `Joint position controller` GUI.
+
 ## Bug report
 
 The full bug report can be found [here](https://github.com/frankaemika/franka_ros/issues/160#issuecomment-961780423).
