@@ -65,7 +65,7 @@ All these parameters are also found as arguments on the `stick.launch` launch fi
 As explained above you can enable gravity compensation using the `gravity_compensation` launch file argument:
 
 ```bash
-roslaunch gazebo_torque_calculation_bug stick.launch load_several_sticks:=false gravity_compensation:=true
+roslaunch gazebo_torque_calculation_bug stick.launch load_several_sticks:=false load_controllers:=false
 ```
 
 ### Topics
