@@ -200,7 +200,7 @@
           <topic>stick_joint1/force_torque</topic>
           <force_torque>
             <!--NOTE: Sensor frame is parent frame if pose tag is not defined-->
-            <frame>parent</frame>
+            <frame>child</frame>
             <!--Flips torque and force.-->
             <measure_direction>child_to_parent</measure_direction>
           </force_torque>
@@ -245,7 +245,7 @@
           <topic>stick_joint2/force_torque</topic>
           <force_torque>
             <!--NOTE: Sensor frame is parent frame if pose tag is not defined-->
-            <frame>parent</frame>
+            <frame>child</frame>
             <!--Flips torque and force.-->
             <measure_direction>child_to_parent</measure_direction>
           </force_torque>

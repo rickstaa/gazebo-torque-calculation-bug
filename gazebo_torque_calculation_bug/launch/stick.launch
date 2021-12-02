@@ -1,4 +1,7 @@
 <launch>
+  <arg name="controller_gui" default="true" doc="Load joint trajectory controller gui."/>
+  <arg name="plot" default="true" doc="Load plots."/>
+
   <!--Stick parameters-->
   <arg name="load_several_sticks" default="false" doc="Load several sticks."/>
   <arg name="initial_joint_positions" doc="Initial joint configuration of the Stick. Specify as a list of name/value pairs in form of '-J [name-of-joint] [value-in-rad]'. Default is a 90 degree bend in the elbow" default="
@@ -69,24 +72,26 @@
 
   <!--Load rivz and rqt_joint_trajectoy_controllers-->
   <group unless="$(arg load_several_sticks)">
-    <node pkg="rviz" type="rviz" output="screen" name="rviz" args="-d $(find gazebo_torque_calculation_bug)/launch/stick.rviz"/>
+    <node if="$(arg rviz)" pkg="rviz" type="rviz" output="screen" name="rviz" args="-d $(find gazebo_torque_calculation_bug)/launch/stick.rviz"/>
 
     <!--Load rqt joint trajectory controller-->
     <node ns="stick" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick1"/>
 
     <!--Load rqt_plots-->
-    <node pkg="rqt_plot" type="rqt_plot" output="screen" name="effort_rqt_plot" args="/stick/joint_states/effort[0]"/>
+    <node if="$(arg plot)" pkg="rqt_plot" type="rqt_plot" output="screen" name="effort_rqt_plot" args="/stick/joint_states/effort[0]"/>
   </group>
   <group if="$(arg load_several_sticks)">
-    <node pkg="rviz" type="rviz" output="screen" name="rviz" args="-d $(find gazebo_torque_calculation_bug)/launch/sticks.rviz"/>
+    <node if="$(arg rviz)" pkg="rviz" type="rviz" output="screen" name="rviz" args="-d $(find gazebo_torque_calculation_bug)/launch/sticks.rviz"/>
 
     <!--Load rqt joint trajectory controller-->
-    <node ns="stick" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick"/>
-    <node ns="stick2" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick2"/>
-    <node ns="stick3" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick3"/>
-    <node ns="stick4" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick4"/>
+    <group if="$(arg controller_gui)">
+      <node ns="stick" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick"/>
+      <node ns="stick2" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick2"/>
+      <node ns="stick3" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick3"/>
+      <node ns="stick4" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick4"/>
+    </group>
 
     <!--Load rqt_plots-->
-    <node pkg="rqt_plot" type="rqt_plot" output="screen" name="effort_rqt_plot" args="/stick/joint_states/effort[0] /stick2/joint_states/effort[0] /stick3/joint_states/effort[0] /stick4/joint_states/effort[0]"/>
+    <node if="$(arg plot)" pkg="rqt_plot" type="rqt_plot" output="screen" name="effort_rqt_plot" args="/stick/joint_states/effort[0] /stick2/joint_states/effort[0] /stick3/joint_states/effort[0] /stick4/joint_states/effort[0]"/>
   </group>
 </launch>
