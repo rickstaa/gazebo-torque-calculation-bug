@@ -1,6 +1,10 @@
 <launch>
+  <arg name="load_controllers" default="true" doc="Should we load the joint trajectory controller?" />
   <arg name="controller_gui" default="true" doc="Load joint trajectory controller gui."/>
-  <arg name="plot" default="true" doc="Load plots."/>
+  <arg name="plot" default="false" doc="Load plots."/>
+  <arg name="log_bug_info" default="true" doc="Log bug debug info to console."/>
+  <arg name="sparse_bug_info" default="true" doc="Only log bug debug info of joint 1."/>
+  <arg name="gravity_compensation" default="false" doc="Enable the gravity compensator."/>
 
   <!--Stick parameters-->
   <arg name="load_several_sticks" default="false" doc="Load several sticks."/>
@@ -15,6 +19,11 @@
   <arg name="rviz" default="false" doc="Should RVIz be launched?" />
   <arg name="world" default="worlds/stick.world" doc="Filename to a SDF World for gazebo to use" />
 
+  <!--Toggle debug options-->
+  <param name="log_bug_info" value="$(arg log_bug_info)"/>
+  <param name="sparse_bug_info" value="$(arg sparse_bug_info)"/>
+  <param name="gravity_compensation" value="$(arg gravity_compensation)"/>
+
   <!--Launch Gazebo-->
   <include file="$(find gazebo_ros)/launch/empty_world.launch" if="$(arg gazebo)">
     <arg name="world_name" value="$(arg world)"/>
@@ -28,6 +37,7 @@
       <arg name="paused" value="$(arg paused)"/>
       <arg name="initial_joint_positions" value="$(arg initial_joint_positions)"/>
       <arg name="rotated" value="$(arg rotated)"/>
+      <arg name="load_controllers" value="$(arg load_controllers)"/>
     </include>
   </group>
 
@@ -39,6 +49,7 @@
         <arg name="paused" value="$(arg paused)"/>
         <arg name="initial_joint_positions" value="-J stick_joint1 -1.57079632679"/>
         <arg name="rotated" value="false"/>
+        <arg name="load_controllers" value="$(arg load_controllers)"/>
       </include>
     </group>
     <group ns="stick2">
@@ -48,6 +59,7 @@
         <arg name="y" value="0.15"/>
         <arg name="initial_joint_positions" value="-J stick2_joint1 1.57079632679"/>
         <arg name="rotated" value="false"/>
+        <arg name="load_controllers" value="$(arg load_controllers)"/>
       </include>
     </group>
     <group ns="stick3">
@@ -57,6 +69,7 @@
         <arg name="y" value="0.30"/>
         <arg name="initial_joint_positions" value="-J stick3_joint1 1.57079632679"/>
         <arg name="rotated" value="true"/>
+        <arg name="load_controllers" value="$(arg load_controllers)"/>
       </include>
     </group>
     <group ns="stick4">
@@ -66,6 +79,7 @@
         <arg name="y" value="0.45"/>
         <arg name="initial_joint_positions" value="-J stick4_joint1 -1.57079632679"/>
         <arg name="rotated" value="true"/>
+        <arg name="load_controllers" value="$(arg load_controllers)"/>
       </include>
     </group>
   </group>
@@ -84,7 +98,7 @@
     <node if="$(arg rviz)" pkg="rviz" type="rviz" output="screen" name="rviz" args="-d $(find gazebo_torque_calculation_bug)/launch/sticks.rviz"/>
 
     <!--Load rqt joint trajectory controller-->
-    <group if="$(arg controller_gui)">
+    <group if="$(eval arg('controller_gui') and arg('load_controllers')">
       <node ns="stick" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick"/>
       <node ns="stick2" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick2"/>
       <node ns="stick3" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick3"/>

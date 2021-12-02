@@ -56,6 +56,17 @@ The script contains the following ROS parameters:
 
 - `log_bug_info`: Enable/disable bug console logs.
 - `sparse_bug_info`: Only show debug info for first joint.
+- `gravity_compensation`: Enable/disable gravity compensation.
+
+All these parameters are also found as arguments on the `stick.launch` launch file.
+
+### Gravity compensation
+
+As explained above you can enable gravity compensation using the `gravity_compensation` launch file argument:
+
+```bash
+roslaunch gazebo_torque_calculation_bug stick.launch load_several_sticks:=false gravity_compensation:=true
+```
 
 ### Topics
 
