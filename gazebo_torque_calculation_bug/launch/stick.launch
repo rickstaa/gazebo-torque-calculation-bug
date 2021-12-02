@@ -1,10 +1,11 @@
 <launch>
   <arg name="load_controllers" default="true" doc="Should we load the joint trajectory controller?" />
   <arg name="controller_gui" default="true" doc="Load joint trajectory controller gui."/>
+  <arg name="controller_manager_gui" default="true" doc="Load the controller manager gui."/>
   <arg name="plot" default="false" doc="Load plots."/>
   <arg name="log_bug_info" default="true" doc="Log bug debug info to console."/>
   <arg name="sparse_bug_info" default="true" doc="Only log bug debug info of joint 1."/>
-  <arg name="gravity_compensation" default="false" doc="Enable the gravity compensator."/>
+  <arg name="gravity_compensation" default="true" doc="Enable the gravity compensator."/>
 
   <!--Stick parameters-->
   <arg name="load_several_sticks" default="false" doc="Load several sticks."/>
@@ -91,6 +92,9 @@
     <!--Load rqt joint trajectory controller-->
     <node ns="stick" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick1"/>
 
+    <!--Load controller manager gui-->
+    <node if="$(arg controller_manager_gui)" pkg="rqt_controller_manager" type="rqt_controller_manager" name="rqt_controller_manager"/>
+
     <!--Load rqt_plots-->
     <node if="$(arg plot)" pkg="rqt_plot" type="rqt_plot" output="screen" name="effort_rqt_plot" args="/stick/joint_states/effort[0]"/>
   </group>
@@ -104,6 +108,9 @@
       <node ns="stick3" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick3"/>
       <node ns="stick4" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick4"/>
     </group>
+
+    <!--Load controller manager gui-->
+    <node if="$(arg controller_manager_gui)" pkg="rqt_controller_manager" type="rqt_controller_manager" name="rqt_controller_manager"/>
 
     <!--Load rqt_plots-->
     <node if="$(arg plot)" pkg="rqt_plot" type="rqt_plot" output="screen" name="effort_rqt_plot" args="/stick/joint_states/effort[0] /stick2/joint_states/effort[0] /stick3/joint_states/effort[0] /stick4/joint_states/effort[0]"/>
