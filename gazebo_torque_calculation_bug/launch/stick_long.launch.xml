@@ -17,10 +17,10 @@
               -J $(arg robot_name)_joint2 0.0"/>
 
   <!--Load stick model as parameter-->
-  <param name="robot_description" command="xacro $(find gazebo_torque_calculation_bug)/stick_description/stick.urdf.xacro xyz:='$(arg x) $(arg y) $(arg z)' rpy:='$(arg roll) $(arg pitch) $(arg yaw)' rotated:='$(arg rotated)' robot_name:='$(arg robot_name)'"/>
+  <param name="robot_description" command="xacro $(find gazebo_torque_calculation_bug)/stick_description/stick_long.urdf.xacro xyz:='$(arg x) $(arg y) $(arg z)' rpy:='$(arg roll) $(arg pitch) $(arg yaw)' rotated:='$(arg rotated)' robot_name:='$(arg robot_name)'"/>
 
   <!--Load joint controller configurations from YAML file to parameter server-->
-  <rosparam file="$(find gazebo_torque_calculation_bug)/config/gazebo_stick_controllers.yaml" command="load" subst_value="true"/>
+  <rosparam file="$(find gazebo_torque_calculation_bug)/config/gazebo_stick_long_controllers.yaml" command="load" subst_value="true"/>
 
   <!--Load the default controllers-->
   <node if="$(arg start_trajectory_controller)" name="controller_spawner" pkg="controller_manager" type="spawner" output="screen" args="

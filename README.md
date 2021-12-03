@@ -20,10 +20,10 @@ You can ofcourse also use `catkin_make`. The `DCMAKE_EXPORT_COMPILE_COMMANDS` is
 
 ## Gazebo example instructions
 
-There are two modes in which you can see the bug the first mode is when `load_several_sticks` is `false`. In this you can see the working example using the following command:
+There are three modes in which you can see the bug the first mode is when `load_several_sticks` is `false`. In this you can see the working example using the following command:
 
 ```bash
-roslaunch gazebo_torque_calculation_bug stick.launch load_several_sticks:=false
+roslaunch gazebo_torque_calculation_bug stick.launch load_several_sticks:=false initial_joint_positions:='-J stick_joint1 -1.57079632679'
 ```
 
 You can then step through the simulation to see the torques in the terminal and the plot. After you inspected this version you can
@@ -46,7 +46,7 @@ In this:
 - `stick3`: The fliped (WRONG) example.
 - `stick4`: Same as above but now the joint is rotated by 180 degrees.
 
-In both options you can control the stick joints using the `rqt_joint_trajectory_controller` windows.
+The last mode uses another launch file `stick_long.launch` to launch a 7DOF  stick. In all options you can control the stick joints using the `rqt_joint_trajectory_controller` windows.
 
 ### Parameters
 

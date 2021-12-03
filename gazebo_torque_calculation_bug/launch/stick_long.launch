@@ -1,3 +1,4 @@
+<!--Stick with all the 6 joints-->
 <launch>
   <arg name="start_trajectory_controller" default="false" doc="Should we load the joint trajectory controller?" />
   <arg name="controller_gui" default="true" doc="Load joint trajectory controller gui."/>
@@ -23,6 +24,7 @@
   <!--Toggle debug options-->
   <param name="log_bug_info" value="$(arg log_bug_info)"/>
   <param name="sparse_bug_info" value="$(arg sparse_bug_info)"/>
+  <param name="joint_of_interest" value="5"/>
   <param name="gravity_compensation" value="$(arg gravity_compensation)"/>
 
   <!--Launch Gazebo-->
@@ -34,7 +36,7 @@
 
   <!--Load stick-->
   <group unless="$(arg load_several_sticks)" ns="stick">
-    <include file="$(find gazebo_torque_calculation_bug)/launch/stick.launch.xml">
+    <include file="$(find gazebo_torque_calculation_bug)/launch/stick_long.launch.xml">
       <arg name="paused" value="$(arg paused)"/>
       <arg name="initial_joint_positions" value="$(arg initial_joint_positions)"/>
       <arg name="rotated" value="$(arg rotated)"/>
@@ -45,7 +47,7 @@
   <!--Load Sticks-->
   <group if="$(arg load_several_sticks)">
     <group ns="stick">
-      <include file="$(find gazebo_torque_calculation_bug)/launch/stick.launch.xml">
+      <include file="$(find gazebo_torque_calculation_bug)/launch/stick_long.launch.xml">
         <arg name="robot_name" value="stick"/>
         <arg name="paused" value="$(arg paused)"/>
         <arg name="initial_joint_positions" value="-J stick_joint1 -1.57079632679"/>
@@ -54,7 +56,7 @@
       </include>
     </group>
     <group ns="stick2">
-      <include file="$(find gazebo_torque_calculation_bug)/launch/stick.launch.xml">
+      <include file="$(find gazebo_torque_calculation_bug)/launch/stick_long.launch.xml">
         <arg name="robot_name" value="stick2"/>
         <arg name="paused" value="$(arg paused)"/>
         <arg name="y" value="0.15"/>
@@ -64,7 +66,7 @@
       </include>
     </group>
     <group ns="stick3">
-      <include file="$(find gazebo_torque_calculation_bug)/launch/stick.launch.xml">
+      <include file="$(find gazebo_torque_calculation_bug)/launch/stick_long.launch.xml">
         <arg name="robot_name" value="stick3"/>
         <arg name="paused" value="$(arg paused)"/>
         <arg name="y" value="0.30"/>
@@ -74,7 +76,7 @@
       </include>
     </group>
     <group ns="stick4">
-      <include file="$(find gazebo_torque_calculation_bug)/launch/stick.launch.xml">
+      <include file="$(find gazebo_torque_calculation_bug)/launch/stick_long.launch.xml">
         <arg name="robot_name" value="stick4"/>
         <arg name="paused" value="$(arg paused)"/>
         <arg name="y" value="0.45"/>
@@ -102,7 +104,7 @@
     <node if="$(arg rviz)" pkg="rviz" type="rviz" output="screen" name="rviz" args="-d $(find gazebo_torque_calculation_bug)/launch/sticks.rviz"/>
 
     <!--Load rqt joint trajectory controller-->
-    <group if="$(eval arg('controller_gui') and arg('load_controllers')">
+    <group if="$(eval arg('controller_gui') and arg('start_trajectory_controller')">
       <node ns="stick" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick"/>
       <node ns="stick2" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick2"/>
       <node ns="stick3" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick3"/>
