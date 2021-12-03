@@ -4,15 +4,20 @@
   <arg name="controller_gui" default="true" doc="Load joint trajectory controller gui."/>
   <arg name="controller_manager_gui" default="true" doc="Load the controller manager gui."/>
   <arg name="plot" default="false" doc="Load plots."/>
-  <arg name="log_bug_info" default="true" doc="Log bug debug info to console."/>
+  <arg name="log_bug_info" default="false" doc="Log bug debug info to console."/>
   <arg name="sparse_bug_info" default="true" doc="Only log bug debug info of joint 1."/>
   <arg name="gravity_compensation" default="true" doc="Enable the gravity compensator."/>
 
   <!--Stick parameters-->
   <arg name="load_several_sticks" default="false" doc="Load several sticks."/>
   <arg name="initial_joint_positions" doc="Initial joint configuration of the Stick. Specify as a list of name/value pairs in form of '-J [name-of-joint] [value-in-rad]'. Default is a 90 degree bend in the elbow" default="
-              -J stick_joint1 0.0
-              -J stick_joint2 0.0"/>
+            -J stick_joint1 0
+            -J stick_joint2 0
+            -J stick_joint3 0
+            -J stick_joint4 -1.57079632679
+            -J stick_joint5 0
+            -J stick_joint6 1.57079632679
+            -J stick_joint7 0.785398163397"/>
   <arg name="rotated" default="false" doc="Load rotated bugged configuration. Only works when load_several_sticks is `false`."/>
 
   <!--Gazebo Parameters-->
