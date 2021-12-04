@@ -171,7 +171,7 @@
   <!--Create stick joints-->
   <joint name="$(arg robot_name)_joint1" type="revolute">
     <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
-    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    <origin xyz="0 0 0.333" rpy="0 0 0"/>
     <parent link="$(arg robot_name)_link1"/>
     <child link="$(arg robot_name)_link2"/>
     <axis xyz="0 0 1"/>
@@ -180,7 +180,7 @@
   </joint>
   <joint name="$(arg robot_name)_joint2" type="revolute">
     <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
-    <origin xyz="0 0 0.1" rpy="${-pi/2} 0 0"/>
+    <origin xyz="0 0 0" rpy="${-pi/2} 0 0"/>
     <parent link="$(arg robot_name)_link2"/>
     <child link="$(arg robot_name)_link3"/>
     <axis xyz="0 0 1"/>
@@ -189,7 +189,7 @@
   </joint>
   <joint name="$(arg robot_name)_joint3" type="revolute">
     <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
-    <origin xyz="0 0 0.1" rpy="${pi/2} 0 0"/>
+    <origin xyz="0 -0.316 0" rpy="${pi/2} 0 0"/>
     <parent link="$(arg robot_name)_link3"/>
     <child link="$(arg robot_name)_link4"/>
     <axis xyz="0 0 1"/>
@@ -198,7 +198,7 @@
   </joint>
   <joint name="$(arg robot_name)_joint4" type="revolute">
     <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
-    <origin xyz="0 0 0.1" rpy="${pi/2} 0 0"/>
+    <origin xyz="0.0825 0 0" rpy="${pi/2} 0 0"/>
     <parent link="$(arg robot_name)_link4"/>
     <child link="$(arg robot_name)_link5"/>
     <axis xyz="0 0 1"/>
@@ -207,7 +207,7 @@
   </joint>
   <joint name="$(arg robot_name)_joint5" type="revolute">
     <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
-    <origin xyz="0 0 0.1" rpy="${-pi/2} 0 0"/>
+    <origin xyz="-0.0825 0.384 0" rpy="${-pi/2} 0 0"/>
     <parent link="$(arg robot_name)_link5"/>
     <child link="$(arg robot_name)_link6"/>
     <axis xyz="0 0 1"/>
@@ -216,7 +216,7 @@
   </joint>
   <joint name="$(arg robot_name)_joint6" type="revolute">
     <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
-    <origin xyz="0 0 0.1" rpy="${pi/2} 0 0"/>
+    <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
     <parent link="$(arg robot_name)_link6"/>
     <child link="$(arg robot_name)_link7"/>
     <axis xyz="0 0 1"/>
@@ -225,7 +225,7 @@
   </joint>
   <joint name="$(arg robot_name)_joint7" type="revolute">
     <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
-    <origin xyz="0 0 0.1" rpy="${pi/2} 0 0"/>
+    <origin xyz="0.088 0 0" rpy="${pi/2} 0 0"/>
     <parent link="$(arg robot_name)_link7"/>
     <child link="$(arg robot_name)_link8"/>
     <axis xyz="0 0 1"/>
