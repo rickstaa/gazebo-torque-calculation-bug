@@ -17,15 +17,15 @@
   <!--Create stick example links-->
   <link name="$(arg robot_name)_link1">
     <visual>
-      <origin xyz="0 0 0.05" />
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.02 0.02 0.08" />
+        <mesh filename="package://franka_description/meshes/visual/link0.dae"/>
       </geometry>
     </visual>
     <collision>
-      <origin xyz="0 0 0.05" />
+    <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.02 0.02 0.08" />
+        <mesh filename="package://franka_description/meshes/collision/link0.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -36,15 +36,15 @@
   </link>
   <link name="$(arg robot_name)_link2">
     <visual>
-      <origin xyz="0 0 0.05" />
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.02 0.02 0.08" />
+        <mesh filename="package://franka_description/meshes/visual/link1.dae"/>
       </geometry>
     </visual>
     <collision>
-      <origin xyz="0 0 0.05" />
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.02 0.02 0.08" />
+        <mesh filename="package://franka_description/meshes/collision/link1.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -55,15 +55,15 @@
   </link>
   <link name="$(arg robot_name)_link3">
     <visual>
-      <origin xyz="0 0 0.05" />
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.02 0.02 0.08" />
+        <mesh filename="package://franka_description/meshes/visual/link2.dae"/>
       </geometry>
     </visual>
     <collision>
-      <origin xyz="0 0 0.05" />
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.02 0.02 0.08" />
+        <mesh filename="package://franka_description/meshes/collision/link2.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -74,15 +74,15 @@
   </link>
   <link name="$(arg robot_name)_link4">
     <visual>
-      <origin xyz="0 0 0.05" />
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.02 0.02 0.08" />
+        <mesh filename="package://franka_description/meshes/visual/link3.dae"/>
       </geometry>
     </visual>
     <collision>
-      <origin xyz="0 0 0.05" />
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.02 0.02 0.08" />
+        <mesh filename="package://franka_description/meshes/collision/link3.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -93,15 +93,15 @@
   </link>
   <link name="$(arg robot_name)_link5">
     <visual>
-      <origin xyz="0 0 0.05" />
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.02 0.02 0.08" />
+        <mesh filename="package://franka_description/meshes/visual/link4.dae"/>
       </geometry>
     </visual>
     <collision>
-      <origin xyz="0 0 0.05" />
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.02 0.02 0.08" />
+        <mesh filename="package://franka_description/meshes/collision/link4.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -112,15 +112,15 @@
   </link>
   <link name="$(arg robot_name)_link6">
     <visual>
-      <origin xyz="0 0 0.05" />
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.02 0.02 0.08" />
+        <mesh filename="package://franka_description/meshes/visual/link5.dae"/>
       </geometry>
     </visual>
     <collision>
-      <origin xyz="0 0 0.05" />
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.02 0.02 0.08" />
+        <mesh filename="package://franka_description/meshes/collision/link5.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -131,15 +131,15 @@
   </link>
   <link name="$(arg robot_name)_link7">
     <visual>
-      <origin xyz="0 0 0.05" />
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.02 0.02 0.08" />
+        <mesh filename="package://franka_description/meshes/visual/link6.dae"/>
       </geometry>
     </visual>
     <collision>
-      <origin xyz="0 0 0.05" />
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.02 0.02 0.08" />
+        <mesh filename="package://franka_description/meshes/collision/link6.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -150,15 +150,15 @@
   </link>
   <link name="$(arg robot_name)_link8">
     <visual>
-      <origin xyz="0 0 0.05" />
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.02 0.02 0.08" />
+        <mesh filename="package://franka_description/meshes/visual/link7.dae"/>
       </geometry>
     </visual>
     <collision>
-      <origin xyz="0 0 0.05" />
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.02 0.02 0.08" />
+        <mesh filename="package://franka_description/meshes/collision/link7.stl"/>
       </geometry>
     </collision>
     <inertial>
