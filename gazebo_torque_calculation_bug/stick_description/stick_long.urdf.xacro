@@ -206,7 +206,7 @@
     <parent link="$(arg robot_name)_link2"/>
     <child link="$(arg robot_name)_link3"/>
     <axis xyz="0 0 1"/>
-    <limit acceleration="15" lower="-2.9671" effort="87" upper="2.9671" velocity="2.5"/>
+    <limit acceleration="7.5" lower="-1.8326" effort="87" upper="1.8326" velocity="2.5"/>
     <dynamics D="1" K="7000" mu_coulomb="0" mu_viscous="16" damping="0.003" friction="0.0"/>
   </joint>
   <joint name="$(arg robot_name)_joint3" type="revolute">
@@ -217,7 +217,7 @@
     <parent link="$(arg robot_name)_link3"/>
     <child link="$(arg robot_name)_link4"/>
     <axis xyz="0 0 1"/>
-    <limit acceleration="15" lower="-2.9671" effort="87" upper="2.9671" velocity="2.5"/>
+    <limit acceleration="12.5" lower="-2.9671" effort="87" upper="2.9671" velocity="2.5"/>
     <dynamics D="1" K="7000" mu_coulomb="0" mu_viscous="16" damping="0.003" friction="0.0"/>
   </joint>
   <joint name="$(arg robot_name)_joint4" type="revolute">
@@ -228,7 +228,7 @@
     <parent link="$(arg robot_name)_link4"/>
     <child link="$(arg robot_name)_link5"/>
     <axis xyz="0 0 1"/>
-    <limit acceleration="15" lower="-2.9671" effort="87" upper="2.9671" velocity="2.5"/>
+    <limit acceleration="12.5" lower="-3.1416" effort="87" upper="-0.4" velocity="2.5"/>
     <dynamics D="1" K="7000" mu_coulomb="0" mu_viscous="16" damping="0.003" friction="0.0"/>
   </joint>
   <joint name="$(arg robot_name)_joint5" type="revolute">
@@ -239,7 +239,7 @@
     <parent link="$(arg robot_name)_link5"/>
     <child link="$(arg robot_name)_link6"/>
     <axis xyz="0 0 1"/>
-    <limit acceleration="15" lower="-2.9671" effort="87" upper="2.9671" velocity="2.5"/>
+    <limit acceleration="15" lower="-2.9671" effort="12" upper="2.9671" velocity="3"/>
     <dynamics D="1" K="7000" mu_coulomb="0" mu_viscous="16" damping="0.003" friction="0.0"/>
   </joint>
   <joint name="$(arg robot_name)_joint6" type="revolute">
@@ -250,7 +250,7 @@
     <parent link="$(arg robot_name)_link6"/>
     <child link="$(arg robot_name)_link7"/>
     <axis xyz="0 0 1"/>
-    <limit acceleration="15" lower="-2.9671" effort="87" upper="2.9671" velocity="2.5"/>
+    <limit acceleration="20" lower="-0.0873" effort="12" upper="3.8223" velocity="3"/>
     <dynamics D="1" K="7000" mu_coulomb="0" mu_viscous="16" damping="0.003" friction="0.0"/>
   </joint>
   <joint name="$(arg robot_name)_joint7" type="revolute">
@@ -261,7 +261,7 @@
     <parent link="$(arg robot_name)_link7"/>
     <child link="$(arg robot_name)_link8"/>
     <axis xyz="0 0 1"/>
-    <limit acceleration="15" lower="-2.9671" effort="87" upper="2.9671" velocity="2.5"/>
+    <limit acceleration="20" lower="-2.9671" effort="12" upper="2.9671" velocity="3"/>
     <dynamics D="1" K="7000" mu_coulomb="0" mu_viscous="16" damping="0.003" friction="0.0"/>
   </joint>
 

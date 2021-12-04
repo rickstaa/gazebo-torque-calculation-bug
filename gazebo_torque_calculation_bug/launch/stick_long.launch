@@ -1,8 +1,8 @@
 <!--Stick with all the 6 joints-->
 <launch>
   <arg name="start_trajectory_controller" default="false" doc="Should we load the joint trajectory controller?" />
-  <arg name="controller_gui" default="true" doc="Load joint trajectory controller gui."/>
-  <arg name="controller_manager_gui" default="true" doc="Load the controller manager gui."/>
+  <arg name="controller_gui" default="false" doc="Load joint trajectory controller gui."/>
+  <arg name="controller_manager_gui" default="false" doc="Load the controller manager gui."/>
   <arg name="plot" default="false" doc="Load plots."/>
   <arg name="log_bug_info" default="false" doc="Log bug debug info to console."/>
   <arg name="sparse_bug_info" default="true" doc="Only log bug debug info of joint 1."/>
@@ -105,7 +105,7 @@
     <node if="$(arg rviz)" pkg="rviz" type="rviz" output="screen" name="rviz" args="-d $(find gazebo_torque_calculation_bug)/launch/stick.rviz"/>
 
     <!--Load rqt joint trajectory controller-->
-    <node ns="stick" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick1"/>
+    <node if="$(arg controller_gui)" ns="stick" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" output="screen" name="rqt_joint_trajectory_controller_stick1"/>
 
     <!--Load controller manager gui-->
     <node if="$(arg controller_manager_gui)" pkg="rqt_controller_manager" type="rqt_controller_manager" name="rqt_controller_manager"/>
