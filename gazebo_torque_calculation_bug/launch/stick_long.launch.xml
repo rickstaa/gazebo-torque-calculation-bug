@@ -4,6 +4,7 @@
   <arg name="paused" default="true" doc="Should the simulation directly be stopped at 0s?" />
   <arg name="robot_name" default="stick" doc="The robot name"/>
   <arg name="rotated" default="false" doc="Whether you want to use the z-axis of joint 2 as the axis of rotation."/>
+  <arg name="safety_controller" default="true" doc="Enable the soft limits."/>
 
   <!--Stick Configuration-->
   <arg name="x" default="0" doc="How far forward to place the base of the stick in [m]?" />
@@ -17,7 +18,7 @@
               -J $(arg robot_name)_joint2 0.0"/>
 
   <!--Load stick model as parameter-->
-  <param name="robot_description" command="xacro $(find gazebo_torque_calculation_bug)/stick_description/stick_long.urdf.xacro xyz:='$(arg x) $(arg y) $(arg z)' rpy:='$(arg roll) $(arg pitch) $(arg yaw)' rotated:='$(arg rotated)' robot_name:='$(arg robot_name)'"/>
+  <param name="robot_description" command="xacro $(find gazebo_torque_calculation_bug)/stick_description/stick_long.urdf.xacro xyz:='$(arg x) $(arg y) $(arg z)' rpy:='$(arg roll) $(arg pitch) $(arg yaw)' rotated:='$(arg rotated)' robot_name:='$(arg robot_name)' safety_controller:='$(arg safety_controller)'"/>
 
   <!--Load joint controller configurations from YAML file to parameter server-->
   <rosparam file="$(find gazebo_torque_calculation_bug)/config/gazebo_stick_long_controllers.yaml" command="load" subst_value="true"/>

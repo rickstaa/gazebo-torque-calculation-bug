@@ -1,0 +1,46 @@
+<launch>
+    <arg name="soft_limits" default="false"/>
+
+    <!--Publish joint limits so that we can see them in plots-->
+    <group if="$(arg soft_limits)">
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub)" args="pub  /joint_limits/stick_joint1/lower  std_msgs/Float64 'data: -2.9671' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub1)" args="pub /joint_limits/stick_joint1/upper  std_msgs/Float64 'data: 2.9671' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub2)" args="pub /joint_limits/stick_joint2/lower  std_msgs/Float64 'data: -1.8326' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub3)" args="pub /joint_limits/stick_joint2/upper  std_msgs/Float64 'data: 1.8326' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub4)" args="pub /joint_limits/stick_joint3/lower  std_msgs/Float64 'data: -2.9671' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub5)" args="pub /joint_limits/stick_joint3/upper  std_msgs/Float64 'data: 2.9671' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub6)" args="pub /joint_limits/stick_joint4/lower  std_msgs/Float64 'data: -3.1416' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub7)" args="pub /joint_limits/stick_joint4/upper  std_msgs/Float64 'data: -0.4' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub8)" args="pub /joint_limits/stick_joint5/lower  std_msgs/Float64 'data: -2.9671' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub9)" args="pub /joint_limits/stick_joint5/upper  std_msgs/Float64 'data: 2.9671' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub10)" args="pub /joint_limits/stick_joint6/lower  std_msgs/Float64 'data: -0.0873' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub11)" args="pub /joint_limits/stick_joint6/upper  std_msgs/Float64 'data: 3.8223' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub12)" args="pub /joint_limits/stick_joint7/lower  std_msgs/Float64 'data: -2.9671' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub13)" args="pub /joint_limits/stick_joint7/upper  std_msgs/Float64 'data: 2.9671' -r 30"/>
+    </group>
+    <group unless="$(arg soft_limits)">
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub)" args="pub  /joint_limits/stick_joint1/lower  std_msgs/Float64 'data: -2.9671' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub1)" args="pub /joint_limits/stick_joint1/upper  std_msgs/Float64 'data: 2.9671' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub2)" args="pub /joint_limits/stick_joint2/lower  std_msgs/Float64 'data: -1.8326' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub3)" args="pub /joint_limits/stick_joint2/upper  std_msgs/Float64 'data: 1.8326' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub4)" args="pub /joint_limits/stick_joint3/lower  std_msgs/Float64 'data: -2.9671' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub5)" args="pub /joint_limits/stick_joint3/upper  std_msgs/Float64 'data: 2.9671' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub6)" args="pub /joint_limits/stick_joint4/lower  std_msgs/Float64 'data: -3.1416' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub7)" args="pub /joint_limits/stick_joint4/upper  std_msgs/Float64 'data: -0.4' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub8)" args="pub /joint_limits/stick_joint5/lower  std_msgs/Float64 'data: -2.9671' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub9)" args="pub /joint_limits/stick_joint5/upper  std_msgs/Float64 'data: 2.9671' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub10)" args="pub /joint_limits/stick_joint6/lower  std_msgs/Float64 'data: -0.0873' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub11)" args="pub /joint_limits/stick_joint6/upper  std_msgs/Float64 'data: 3.8223' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub12)" args="pub /joint_limits/stick_joint7/lower  std_msgs/Float64 'data: -2.9671' -r 30"/>
+        <node pkg="rostopic" type="rostopic" name="$(anon rospub13)" args="pub /joint_limits/stick_joint7/upper  std_msgs/Float64 'data: 2.9671' -r 30"/>
+    </group>
+
+    <!--Plot joint_positions and limits-->
+    <node pkg="rqt_plot" type="rqt_plot" output="screen" name="$(anon joint_1_plot)" args="/stick/joint_states/position[0] /joint_limits/stick_joint1/lower /joint_limits/stick_joint1/upper"/>
+    <node pkg="rqt_plot" type="rqt_plot" output="screen" name="$(anon joint_2_plot)" args="/stick/joint_states/position[1] /joint_limits/stick_joint2/lower /joint_limits/stick_joint2/upper"/>
+    <node pkg="rqt_plot" type="rqt_plot" output="screen" name="$(anon joint_3_plot)" args="/stick/joint_states/position[2] /joint_limits/stick_joint3/lower /joint_limits/stick_joint3/upper"/>
+    <node pkg="rqt_plot" type="rqt_plot" output="screen" name="$(anon joint_4_plot)" args="/stick/joint_states/position[3] /joint_limits/stick_joint4/lower /joint_limits/stick_joint4/upper"/>
+    <node pkg="rqt_plot" type="rqt_plot" output="screen" name="$(anon joint_5_plot)" args="/stick/joint_states/position[4] /joint_limits/stick_joint5/lower /joint_limits/stick_joint5/upper"/>
+    <node pkg="rqt_plot" type="rqt_plot" output="screen" name="$(anon joint_6_plot)" args="/stick/joint_states/position[5] /joint_limits/stick_joint6/lower /joint_limits/stick_joint6/upper"/>
+    <node pkg="rqt_plot" type="rqt_plot" output="screen" name="$(anon joint_7_plot)" args="/stick/joint_states/position[6] /joint_limits/stick_joint7/lower /joint_limits/stick_joint7/upper"/>
+</launch>

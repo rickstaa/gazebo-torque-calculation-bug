@@ -7,6 +7,7 @@
   <arg name="log_bug_info" default="false" doc="Log bug debug info to console."/>
   <arg name="sparse_bug_info" default="true" doc="Only log bug debug info of joint 1."/>
   <arg name="gravity_compensation" default="true" doc="Enable the gravity compensator."/>
+  <arg name="safety_controller" default="true" doc="Enable the soft limits."/>
 
   <!--Stick parameters-->
   <arg name="load_several_sticks" default="false" doc="Load several sticks."/>
@@ -48,6 +49,7 @@
       <arg name="initial_joint_positions" value="$(arg initial_joint_positions)"/>
       <arg name="rotated" value="$(arg rotated)"/>
       <arg name="start_trajectory_controller" value="$(arg start_trajectory_controller)"/>
+      <arg name="safety_controller" value="$(arg safety_controller)"/>
     </include>
   </group>
 
@@ -60,6 +62,7 @@
         <arg name="initial_joint_positions" value="-J stick_joint1 -1.57079632679"/>
         <arg name="rotated" value="false"/>
         <arg name="start_trajectory_controller" value="$(arg start_trajectory_controller)"/>
+        <arg name="safety_controller" value="$(arg safety_controller)"/>
       </include>
     </group>
     <group ns="stick2">
@@ -70,6 +73,7 @@
         <arg name="initial_joint_positions" value="-J stick2_joint1 1.57079632679"/>
         <arg name="rotated" value="false"/>
         <arg name="start_trajectory_controller" value="$(arg start_trajectory_controller)"/>
+        <arg name="safety_controller" value="$(arg safety_controller)"/>
       </include>
     </group>
     <group ns="stick3">
@@ -80,6 +84,7 @@
         <arg name="initial_joint_positions" value="-J stick3_joint1 1.57079632679"/>
         <arg name="rotated" value="true"/>
         <arg name="start_trajectory_controller" value="$(arg start_trajectory_controller)"/>
+        <arg name="safety_controller" value="$(arg safety_controller)"/>
       </include>
     </group>
     <group ns="stick4">
@@ -90,6 +95,7 @@
         <arg name="initial_joint_positions" value="-J stick4_joint1 -1.57079632679"/>
         <arg name="rotated" value="true"/>
         <arg name="start_trajectory_controller" value="$(arg start_trajectory_controller)"/>
+        <arg name="safety_controller" value="$(arg safety_controller)"/>
       </include>
     </group>
   </group>
