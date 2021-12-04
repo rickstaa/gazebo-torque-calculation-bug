@@ -25,6 +25,7 @@
   <arg name="paused" default="true" doc="Should the simulation directly be stopped at 0s?" />
   <arg name="rviz" default="false" doc="Should RVIz be launched?" />
   <arg name="world" default="worlds/stick.world" doc="Filename to a SDF World for gazebo to use" />
+  <arg name="physics" default="ode"/> <!--Phyics engine: options are bullet|dart|ode|simbody-->
 
   <!--Toggle debug options-->
   <param name="log_bug_info" value="$(arg log_bug_info)"/>
@@ -37,6 +38,7 @@
     <arg name="world_name" value="$(arg world)"/>
     <!-- Always start in paused mode, and only unpause when spawning the model -->
     <arg name="paused" value="true"/>
+    <arg name="physics" value="$(arg physics)"/>
   </include>
 
   <!--Load stick-->
