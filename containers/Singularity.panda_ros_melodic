@@ -1,0 +1,47 @@
+# Ubuntu 18.04 - Ros melodic Franka gazebo gravity compensation test container
+Bootstrap: docker
+From: osrf/ros:melodic-desktop-full
+
+%help
+    A small container used for testing the problems explained in
+    https://github.com/frankaemika/franka_ros/issues/160#issuecomment-961780423.
+%labels
+    Maintainer: Rick Staa
+    Github: https://github.com/frankaemika/franka_ros/issues/160#issuecomment-961780423
+    Version: v0.0.0
+    Type: Public
+%environment
+    # Set language options
+    export LANG=C.UTF-8 LC_ALL=C.UTF-8
+
+    # Set ROS vars
+    export ROS_DISTRO=melodic
+%post
+    # Install extra system package dependencies
+    apt update --fix-missing
+    apt install -q -y git
+
+    # Install ros build tools
+    apt install -q -y python-catkin-tools
+
+    # Install libfranka from source
+    # NOTE: Uncomment if you want to install from source
+    apt update
+    apt install -q -y \
+       cmake \
+       libpoco-dev \
+       libeigen3-dev
+    bash -c "cd / \
+       && apt remove -y \"*libfranka*\" \
+       && git clone --recursive https://github.com/frankaemika/libfranka.git \
+       && cd libfranka \
+       && mkdir build \
+       && cd build \
+       && cmake -DCMAKE_BUILD_TYPE=Release .. \
+       && cmake --build ."
+
+    # Build the gazebo gravity compensation test catkin workspace
+    mkdir -p /gazebo_gravity_comp_test_ws; cd /gazebo_gravity_comp_test_ws
+    git clone -b melodic-devel --recursive https://github.com/rickstaa/gazebo-torque-calculation-bug.git src
+    rosdep install --from-paths src --ignore-src --rosdistro melodic -y --skip-keys libfranka
+    . /opt/ros/melodic/setup.sh; catkin build -DCMAKE_BUILD_TYPE=Release -DFranka_DIR:PATH=/libfranka/build
