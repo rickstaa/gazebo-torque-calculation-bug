@@ -1,6 +1,6 @@
 [submodule "gazebo_ros_pkgs"]
 	path = gazebo_ros_pkgs
-	url = git@github.com:rickstaa/gazebo_ros_pkgs.git
+	url = ../gazebo_ros_pkgs.git
 [submodule "franka_ros"]
 	path = franka_ros
-	url = git@github.com:rickstaa/franka_ros.git
+	url = ../franka_ros.git
